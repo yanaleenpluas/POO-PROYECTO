@@ -9,5 +9,5 @@
  * @author USUARIO
  */
 public class Concurso {
-    
+    private String nombre;
 }
