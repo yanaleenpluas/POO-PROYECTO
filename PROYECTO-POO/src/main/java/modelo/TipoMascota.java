@@ -1,3 +1,5 @@
+package modelo;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,6 +10,8 @@
  *
  * @author USUARIO
  */
-public class Concurso {
-    private String nombre;
+public enum TipoMascota {
+    TODOS,
+    PERRO,
+    GATO;
 }
