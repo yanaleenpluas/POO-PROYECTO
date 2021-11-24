@@ -1,7 +1,7 @@
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
+import modelo.AdministrarMascota;
 import modelo.Mascota;
 import modelo.TipoMascota;
 
@@ -17,14 +17,85 @@ import modelo.TipoMascota;
  */
 public class Main {
     public static ArrayList<Mascota> mascotas;
+    public static int oprincipal=0;
     
     public static void main(String[] args) {
-       Main.datosIniciales();
-        Main.menuPrincipal();
-
+       datosMascotas();
+       simulacionPrograma();
     }
     
-    public static void datosIniciales(){
+    
+    
+    
+    
+    public static void simulacionPrograma(){
+        while(oprincipal!=4){
+            
+           int opcionMenu=menuPrincipal();
+
+           while(opcionMenu==3){
+                int opMascotas= AdministrarMascota.menu(mascotas);
+                if(opMascotas==1){
+                    ArrayList lm=AdministrarMascota.crearMascota(mascotas);
+                    mascotas=lm;
+                    System.out.print("1. Volver al menu principal \n2. Volver al Menu Administrar Mascotas\n3.Salir\n");
+                    int op = Main.volverMenu(opcionMenu);
+                    opcionMenu=op;
+                            
+ 
+                }
+                if(opMascotas==3){
+                    opcionMenu=0;
+                     
+                }
+           
+            }
+           while(opcionMenu==4){
+               salir();
+               opcionMenu=0;
+               oprincipal=4;
+           }
+        }
+           
+    }
+    public static int menuPrincipal(){
+        System.out.print("----BIENVENIDOS A LA FUNDACION AMIGOS PELUDOS EC?----\n");
+        System.out.print("-----Menu Principal----- \n ");
+        System.out.print("1. Administrar Concursos.\n 2. Administrar Dueños.\n 3 .Administrar Mascotas.\n 4. Salir\n" );
+        System.out.print("Ingrese una opcion:\n");
+        Scanner sc = new Scanner(System.in);
+        int opcion=sc.nextInt();
+        return opcion;
+    }
+    
+    public static void salir(){
+        System.out.print("!Muchas gracias por su atencion!");
+        
+    }
+    public static int volverMenu( int opcionMenu){
+        Scanner sc=new Scanner(System.in);
+        int opcion2 = sc.nextInt();
+        if(opcion2==1){
+            opcionMenu=0;
+            oprincipal=0;
+            
+        }
+        else if(opcion2==2){
+            opcionMenu=opcionMenu;
+        }
+        else if(opcion2==3){
+            salir();
+            opcionMenu=0;
+            oprincipal=4;
+        }
+        return opcionMenu;
+    }
+
+    
+
+
+    
+    public static void datosMascotas(){
         //Se crean los datos iniciales para que el programa tenga un mejor funcionamiento
         //Se crean los 10 objetos de tipo Mascota 
         mascotas= new ArrayList<>();
@@ -57,7 +128,7 @@ public class Main {
         
     }
    
-    public static void menuPrincipal(){
+   /* public static void menuPrincipal(){
         System.out.print("----BIENVENIDOS A LA FUNDACION AMIGOS PELUDOS EC?----\n");
         System.out.print("-----Menu Principal----- \n ");
         System.out.print("1. Administrar Concursos.\n 2. Administrar Dueños.\n 3.Administrar Mascotas\n");
@@ -65,14 +136,16 @@ public class Main {
         System.out.print("Ingrese una opcion:\n");
         int opcion = sc.nextInt();
         if(opcion==3){
-            Main.menuAdministrarMascota();
+            ArrayList lm=AdministrarMascota.menu(mascotas);
+            mascotas=lm;
             
+            //Main.menuAdministrarMascota();           
         }
-    }
+    }*/
     
-    public static void menuAdministrarMascota(){
+    /*public static void menuAdministrarMascota(){
         System.out.print("----Administrar Mascotas ----");
-
+    
         System.out.print("\n>>>Mascotas Existentes:\n");
         int i=1;
         for(Mascota m:mascotas){
@@ -145,13 +218,11 @@ public class Main {
             salir();
         }
 
-        
-        
-    }
-    public static void eliminarMascota(){
+      
         
     }
+    
     public static void salir(){
         System.out.print("!Muchas gracias por su atencion!");
-    }
+    }*/
 }
