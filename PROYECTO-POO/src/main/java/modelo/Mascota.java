@@ -1,7 +1,7 @@
 package modelo;
 
 
-import modelo.Dueño;
+import modelo.Duenio;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -21,7 +21,7 @@ public class Mascota {
     private String raza;
     private LocalDate fechaNacimiento;
     private String foto;
-    private Dueño dueño;
+    private Duenio duenio;
     private String id;
     private TipoMascota tipo;
 
@@ -52,8 +52,8 @@ public class Mascota {
         return raza;
     }
 
-    public Dueño getDueño() {
-        return dueño;
+    public Duenio getDuenio() {
+        return duenio;
     }
 
     public String getId() {

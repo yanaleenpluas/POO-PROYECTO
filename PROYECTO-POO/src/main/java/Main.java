@@ -1,8 +1,11 @@
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import modelo.AdministrarDuenio;
 import modelo.AdministrarMascota;
+import modelo.Cuidad;
 import modelo.Mascota;
+import modelo.Duenio;
 import modelo.TipoMascota;
 
 /*
@@ -16,24 +19,43 @@ import modelo.TipoMascota;
  * @author USUARIO
  */
 public class Main {
+    public static ArrayList<Duenio> duenios;
     public static ArrayList<Mascota> mascotas;
     public static int oprincipal=0;
     
     public static void main(String[] args) {
        datosMascotas();
+       datosDuenios();
        simulacionPrograma();
     }
     
     
-    
-    
-    
     public static void simulacionPrograma(){
         while(oprincipal!=4){
+            int opcionMenu=menuPrincipal();
             
-           int opcionMenu=menuPrincipal();
+            while(opcionMenu==2){
+                int opDuenios=AdministrarDuenio.menu(duenios);
+                if(opDuenios==1){
+                    ArrayList ld= AdministrarDuenio.crearDuenio(duenios);
+                    duenios=ld;
+                    System.out.print("1. Volver al menu principal \n2. Volver al Menu Administrar Dueños\n3.Salir\n");
+                    int op = Main.volverMenu(opcionMenu);
+                    opcionMenu=op;
+                }else if (opDuenios==2){
+                    ArrayList ld = AdministrarDuenio.editarDuenio(duenios);
+                    duenios=ld;
+                    System.out.print("1. Volver al menu principal \n2. Volver al Menu Administrar Dueños\n3.Salir\n");
+                    int op = Main.volverMenu(opcionMenu);
+                    opcionMenu=op;
+                    
+                }else if(opDuenios==3){
+                    opcionMenu=0;
+                }
 
-           while(opcionMenu==3){
+            }
+
+            while(opcionMenu==3){
                 int opMascotas= AdministrarMascota.menu(mascotas);
                 if(opMascotas==1){
                     ArrayList lm=AdministrarMascota.crearMascota(mascotas);
@@ -41,16 +63,22 @@ public class Main {
                     System.out.print("1. Volver al menu principal \n2. Volver al Menu Administrar Mascotas\n3.Salir\n");
                     int op = Main.volverMenu(opcionMenu);
                     opcionMenu=op;
-                            
- 
-                }
-                if(opMascotas==3){
+
+                }else if(opMascotas==2){
+                    ArrayList lm=AdministrarMascota.eliminarMascota(mascotas);
+                    mascotas=lm;
+                    System.out.print("1. Volver al menu principal \n2. Volver al Menu Administrar Mascotas\n3.Salir\n");
+                    int op=Main.volverMenu(opcionMenu);
+                    opcionMenu=op;                   
+                }else if(opMascotas==3){
                     opcionMenu=0;
                      
                 }
            
             }
-           while(opcionMenu==4){
+           
+           
+            while(opcionMenu==4){
                salir();
                opcionMenu=0;
                oprincipal=4;
@@ -79,22 +107,46 @@ public class Main {
             opcionMenu=0;
             oprincipal=0;
             
-        }
-        else if(opcion2==2){
+        }else if(opcion2==2){
             opcionMenu=opcionMenu;
-        }
-        else if(opcion2==3){
+        }else if(opcion2==3){
             salir();
             opcionMenu=0;
             oprincipal=4;
         }
         return opcionMenu;
     }
-
     
-
-
+    public static void datosDuenios(){
+        duenios= new ArrayList<>();
+        //String id, String apellido, String nombre, String direccion,  String email, int telefono
+        
+        Duenio d1 = new Duenio("0953519745","Pluas","Britney","Mapasingue Este", "pbritney@gmail.com","0961586881");
+        Duenio d2 = new Duenio("0964136181","Macias","Sebastian","Guasmo Norte", "sebastiaM@gmail.com","0751584625");
+        Duenio d3 = new Duenio("3574161765","Kathia","Jimenez","15 y Argentina", "ninivek21_@hotmail.com","9823455552");
+        Duenio d4 = new Duenio("4554164766", "Edwin",  "Rodriguez", "35 y Portete",  "edwin55@gmail.com","7899342123");
+        Duenio d5 = new Duenio("0415681516","Suarez","Angela","Samanes3", "asuearez@gmail.com","0923541877");
+        Duenio d6 = new Duenio("7916581631","Vera","Leonardo","Metropolis", "lvera@gmail.com","0974454116");
+        Duenio d7 = new Duenio("0971465410","Quirimbay","Samantha","Samanes 2", "saman123@gmail.com","0935418484");
+        Duenio d8 = new Duenio("0745251851","Ponce","Erick","Urdesa", "eponces@gmail.com","0964516548");
+        Duenio d9 = new Duenio("0546116169", "Alejandro", "Tepan", "21 y Portete", "alebernal@gmail.com","9487395465");
+        Duenio d10 = new Duenio("2347215842", "Jorge", "Sanchez", "30 y Cuenca",  "penaa_@hotmail.com","8598766095");
     
+        duenios.add(d1);
+        duenios.add(d2);
+        duenios.add(d3);
+        duenios.add(d4);
+        duenios.add(d5);
+        duenios.add(d6);
+        duenios.add(d7);
+        duenios.add(d8);
+        duenios.add(d9);
+        duenios.add(d10);
+        d10.codigoDuenio(d10.getId());
+
+        
+    }
+
     public static void datosMascotas(){
         //Se crean los datos iniciales para que el programa tenga un mejor funcionamiento
         //Se crean los 10 objetos de tipo Mascota 
@@ -124,7 +176,7 @@ public class Main {
         mascotas.add(m8);
         mascotas.add(m9);
         mascotas.add(m10);
-        m10.codigoMascota("2016LUKETG");
+        m10.codigoMascota(m10.getId());
         
     }
    

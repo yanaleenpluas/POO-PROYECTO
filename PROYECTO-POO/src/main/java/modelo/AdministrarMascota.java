@@ -15,6 +15,7 @@ import java.util.Scanner;
  * @author USUARIO
  */
 public class AdministrarMascota {
+    
     public static int menu(ArrayList<Mascota> mascotas){
         System.out.print("----Administrar Mascotas ----");
 
@@ -45,15 +46,12 @@ public class AdministrarMascota {
         tipo= TipoMascota.TODOS;
         if(tip.toUpperCase().equals("GATO")){
             tipo= TipoMascota.GATO;
-        }
-        else if(tip.toUpperCase().equals("PERRO")){
+        }else if(tip.toUpperCase().equals("PERRO")){
             tipo=TipoMascota.PERRO;
-        }
-        else{
+        }else{
             System.out.print("!ERROR!\nIngresar Tipo(PERRO/GATO):\n");
             String tip2= sc.nextLine();
-            tip2=tip;
-            
+            tip2=tip;    
         }
 
         System.out.print("Ingresar ID:\n");
@@ -77,7 +75,24 @@ public class AdministrarMascota {
         
         return mascotas;
         }
-
-
     
+    public static ArrayList eliminarMascota(ArrayList<Mascota> mascotas){
+        Scanner sc=new Scanner(System.in);
+        System.out.print("\n-----Eliminar Mascota-----\n");
+        int i=0;
+        while(i==0){
+            System.out.print("Ingrese ID Mascota: \n");      
+            String idmascota=sc.nextLine();
+            boolean b= mascotas.removeIf(m1-> m1.getId().equals(idmascota.toUpperCase()));
+            if(b){
+                i=1;
+                System.out.print("¡SE HA ELIMINADO LA MASCOTA!\n");    
+            }else{
+                System.out.print("¡ID INCORRRECTO - MASCOTA NO ENCONTRADA!\n");    
+
+            }
+            
+        
+        }return mascotas;
+    }
 }
