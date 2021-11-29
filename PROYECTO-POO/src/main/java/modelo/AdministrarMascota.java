@@ -15,16 +15,12 @@ import java.util.Scanner;
  * @author USUARIO
  */
 public class AdministrarMascota {
-    
+    //menu de la clase administrar mascota
     public static int menu(ArrayList<Mascota> mascotas){
         System.out.print("----Administrar Mascotas ----");
 
         System.out.print("\n>>>Mascotas Existentes:\n");
-        int i=1;
-        for(Mascota m:mascotas){
-            System.out.print(i+ m.toString()+"\n");
-            i++;
-        }
+        mostrarMascota(mascotas);
         System.out.print("\nCodigo de Mascota: " + Mascota.getCodigo()+"\n");
         System.out.print("\n 1. Crear mascota.\n 2. Eliminar mascota.\n 3. Regresar al menu principal\n");
         System.out.print("Ingrese una opcion:\n");
@@ -32,26 +28,37 @@ public class AdministrarMascota {
         int opcion=sc.nextInt();
         return opcion;
     }
+    //muestra las mascotas
+    public static void mostrarMascota(ArrayList<Mascota> mascotas){
+                int i=1;
+        for(Mascota m:mascotas){
+            System.out.print(i+ m.toString()+"\n");
+            i++;
+        }
+    }
     
     
-    
-    
-    public static ArrayList crearMascota(ArrayList<Mascota> mascotas){
+    //crea una nueva mascota
+    public static void crearMascota(ArrayList<Mascota> mascotas, ArrayList<Duenio> duenios){
         System.out.print("\n-----Crear Mascota-----\n");
-        Scanner sc= new Scanner(System.in);
-        System.out.print("Ingresar Tipo(PERRO/GATO):\n");
-        String tip= sc.nextLine();
-        
+        Scanner sc= new Scanner(System.in);        
         TipoMascota tipo;
         tipo= TipoMascota.TODOS;
-        if(tip.toUpperCase().equals("GATO")){
-            tipo= TipoMascota.GATO;
-        }else if(tip.toUpperCase().equals("PERRO")){
-            tipo=TipoMascota.PERRO;
-        }else{
-            System.out.print("!ERROR!\nIngresar Tipo(PERRO/GATO):\n");
-            String tip2= sc.nextLine();
-            tip2=tip;    
+        int i=0;
+        while(i==0){
+            System.out.print("Ingresar Tipo(PERRO/GATO):\n");
+            String tip= sc.nextLine();
+            if(tip.toUpperCase().equals("GATO")){
+                i++;
+                tipo= TipoMascota.GATO;
+                
+            }else if(tip.toUpperCase().equals("PERRO")){
+                i++;
+                tipo=TipoMascota.PERRO;
+                
+            }else{
+                System.out.print("!ERROR!\n");
+            }
         }
 
         System.out.print("Ingresar ID:\n");
@@ -68,15 +75,19 @@ public class AdministrarMascota {
 
         System.out.print("Ingresar Foto(String):\n");
         String foto= sc.nextLine();
-        Mascota m= new Mascota(nombre,raza,fecha,foto, iD, tipo );
+         System.out.print("Seleccionar Dueño):\n");
+        Duenio.mostrarAuspiciante(duenios);
+        int op1=sc.nextInt();
+        Duenio d1= duenios.get(op1-1);
+        Mascota m= new Mascota(nombre,raza,fecha,foto, iD, tipo,d1 );
         m.codigoMascota(iD);
         mascotas.add(m);
         System.out.print("¡Se ha ingresado una nueva mascota con Exito!\n");
         
-        return mascotas;
+        
         }
-    
-    public static ArrayList eliminarMascota(ArrayList<Mascota> mascotas){
+    //elimina una mascota
+    public static void eliminarMascota(ArrayList<Mascota> mascotas){
         Scanner sc=new Scanner(System.in);
         System.out.print("\n-----Eliminar Mascota-----\n");
         int i=0;
@@ -93,6 +104,6 @@ public class AdministrarMascota {
             }
             
         
-        }return mascotas;
+        }
     }
 }

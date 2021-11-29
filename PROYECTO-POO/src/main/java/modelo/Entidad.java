@@ -10,18 +10,23 @@ package modelo;
  * @author USUARIO
  */
 public abstract class Entidad {
-    private String nombre;
-    private String direccion;
+    protected String nombre;
+    protected String direccion;
     //private Cuidad cuidad;
-    private String email;
-    private String telefono;
+    protected String email;
+    protected String telefono;
+    protected Ciudad ciudad;
 
-    public Entidad(String nombre, String direccion,  String email, String telefono) {
+    public Entidad(String nombre, String direccion, Ciudad ciudad, String email, String telefono) {
         this.nombre = nombre;
         this.direccion = direccion;
-        //this.cuidad = cuidad;
+        this.ciudad = ciudad;
         this.email = email;
         this.telefono = telefono;
+    }
+
+    public Ciudad getCiudad() {
+        return ciudad;
     }
 
     public String getNombre() {
@@ -49,6 +54,10 @@ public abstract class Entidad {
         this.direccion = direccion;
     }
 
+    public void setCiudad(Ciudad ciudad) {
+        this.ciudad = ciudad;
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -59,7 +68,7 @@ public abstract class Entidad {
 
     @Override
     public String toString() {
-        return ", Nombre=" + nombre;
+        return ", Nombre=" + nombre+", Ciudad: "+ ciudad.getNombre();
     }
     
 }

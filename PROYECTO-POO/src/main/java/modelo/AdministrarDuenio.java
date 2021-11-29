@@ -13,15 +13,12 @@ import java.util.Scanner;
  * @author USUARIO
  */
 public class AdministrarDuenio {
+    //muestra el menu de la clase administrar duenio
     public static int menu(ArrayList<Duenio> duenios){
         System.out.print("----Administrar Dueños----");
 
         System.out.print("\n>>>Dueños Existentes:\n");
-        int i=1;
-        for(Duenio d:duenios){
-            System.out.print(i+ d.toString()+"\n");
-            i++;
-        }
+        mostrarDuenio(duenios);
         System.out.print("\nCodigo de Dueño: " + Duenio.getCodigo() +"\n");
         System.out.print("\n 1. Crear Dueño.\n 2. Editar Dueño.\n 3. Regresar al menu principal\n");
         System.out.print("Ingrese una opcion:\n");
@@ -29,8 +26,17 @@ public class AdministrarDuenio {
         int opcion=sc.nextInt();
         return opcion;
     }
+    //muestra la informacion de los duenios
+    public static void mostrarDuenio(ArrayList<Duenio> duenios){
+        int i=1;
+        for(Duenio d:duenios){
+            System.out.print(i+ d.toString()+"\n");
+            i++;
+        }
+    }
     
-    public static ArrayList crearDuenio(ArrayList<Duenio> duenios){  
+    //crea un nuevo dueño
+    public static void crearDuenio(ArrayList<Duenio> duenios, ArrayList<Ciudad>ciudades){  
         System.out.print("\n-----Crear Dueño-----\n");
 
         Scanner sc= new Scanner(System.in);
@@ -52,20 +58,34 @@ public class AdministrarDuenio {
 
         System.out.print("Ingresar email:\n");
         String email= sc.nextLine();
-  
-        Duenio d= new Duenio(id, nombre1,  ape1, direc, email, telefono );
+        
+        System.out.print("Selecionar Ciudad:\n");
+        AdministrarCiudad.mostrarCiudades(ciudades);
+        System.out.print((ciudades.size()+1)+" )Ingresar nueva ciudad:\n");
+        int op=sc.nextInt();
+        Ciudad c= new Ciudad("","","");
+        if(op==ciudades.size()+1){
+            Ciudad c1 = AdministrarCiudad.CrearCiudad();
+            ciudades.add(c1);
+            c=c1;
+        }else{
+            Ciudad c1= ciudades.get(op-1);
+            c=c1;
+            
+        }
+        Duenio d= new Duenio(id, nombre1,  ape1, direc,c, email, telefono );
         duenios.add(d);
         d.codigoDuenio(id);
         System.out.print("¡Se ha ingresado un nuevo Dueño con Exito!\n");
-        return duenios;   
     }
-    
-    public static ArrayList editarDuenio(ArrayList<Duenio> duenios){
+    //edita un duenio ya existente
+    public static void editarDuenio(ArrayList<Duenio> duenios, ArrayList<Ciudad> ciudades){
         Scanner sc=new Scanner(System.in);        
         System.out.print("\n-----Editar Dueño-----\n");
         System.out.print("Ingresar ID (cedula):\n");
         String id=sc.nextLine(); 
         int i=0;
+        Duenio d= new Duenio("","","","",ciudades.get(i),"","");
         for(Duenio du:duenios){
             if(id.toUpperCase().equals(du.getId())){
                 i=1;
@@ -110,11 +130,23 @@ public class AdministrarDuenio {
                       du.setTelefono(dato);
 
                     }else if(opcion.equals("6")){
-                      System.out.print("Ingrese la nueva Ciudad:\n");
-                      //String dato=sc.nextLine();
-                      //du.setciudad(dato);
+                        System.out.print("Ingrese la nueva Ciudad:\n");
+                        
+                        AdministrarCiudad.mostrarCiudades(ciudades);
+                        
+                        System.out.print((ciudades.size()+1)+")Ingresar nueva ciudad:\n");
+                        int op= sc.nextInt();
+                        Ciudad c = new Ciudad("","","");
+                        if(op==ciudades.size()+1){
+                            Ciudad c1 = AdministrarCiudad.CrearCiudad();
+                            ciudades.add(c1);
+                            c=c1;
+                        }else{
+                            Ciudad c1= ciudades.get(op-1);
+                            c=c1;
+                        du.setCiudad(c);
 
-                    }else if(opcion.equals("7")){
+                    }}else if(opcion.equals("7")){
                       System.out.print("Ingrese el nuevo E-mail:\n");
                       String dato=sc.nextLine();
                       du.setEmail(dato);
@@ -124,11 +156,13 @@ public class AdministrarDuenio {
                         q+=1;
                         
                     }
+                    d=du;
                     System.out.print("Desea cambiar otro dato(SI/NO):\n");
                     String dato=sc.nextLine();
                     if(dato.toUpperCase().equals("NO")){
                         System.out.print("Cambios Realidos con exito.\n");
                         q=1;
+                        ;
                     }
        
                     
@@ -138,7 +172,7 @@ public class AdministrarDuenio {
             System.out.print("!ERROR!\n");
             System.out.print("No existe ningun dueño con ese ID\n");
             
-        }return duenios;
+        }
     }
     
 }

@@ -25,9 +25,10 @@ public class Mascota {
     private String id;
     private TipoMascota tipo;
 
-    public Mascota(String nombreM, String raza, String fecha, String foto, String id, TipoMascota tipo) {
+    public Mascota(String nombreM, String raza, String fecha, String foto, String id, TipoMascota tipo, Duenio duenio) {
         this.nombreM = nombreM;
         this.raza = raza;
+        this.duenio=duenio;
         LocalDate fechaNacimiento = LocalDate.parse(fecha);
         this.fechaNacimiento = fechaNacimiento;
         this.foto = foto;
@@ -66,7 +67,7 @@ public class Mascota {
 
     @Override
     public String toString() {
-        return  ") Nombre=" + nombreM + ", ID=" + id +  ", Raza=" + raza + ", Fecha Nacimiento=" + fechaNacimiento  +", Tipo=" + tipo ;
+        return  ") Nombre=" + nombreM + ", ID=" + id +  ", Raza=" + raza + ", Fecha Nacimiento=" + fechaNacimiento  +", Tipo=" + tipo+ "Dueño"+ duenio ;
     }
     
 }

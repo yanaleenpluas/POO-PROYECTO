@@ -17,8 +17,8 @@ public class Duenio extends Entidad {
   private static String codigo;
   //ArrayList<Mascota> mascotas;
 
-    public Duenio(String id, String apellido, String nombre, String direccion, String email, String telefono) {
-        super(nombre, direccion, email, telefono);
+    public Duenio(String id, String apellido, String nombre, String direccion, Ciudad ciudad,String email, String telefono) {
+        super(nombre, direccion,ciudad, email, telefono);
         this.id = id;
         this.apellido = apellido;
     }
@@ -54,9 +54,15 @@ public class Duenio extends Entidad {
 
     @Override
     public String toString() {
-        return  ") ID=" + id +super.toString()+ ", Apellido=" + apellido ;
+        return  ") ID=" + id + ", Apellido=" + apellido+super.toString() ;
     }
-    
+    public static void mostrarAuspiciante(ArrayList<Duenio> duenios){
+        int i=0;
+        for(Duenio a: duenios){
+            i++;
+            System.out.print(i+ a.toString()+"\n");
+        }
+    }    
 
 
 
