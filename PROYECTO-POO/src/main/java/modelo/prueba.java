@@ -12,5 +12,6 @@ package modelo;
 public class prueba {
     int prueba;
     int hola;
+    int hola2;
     
 }
