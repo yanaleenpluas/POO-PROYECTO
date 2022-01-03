@@ -10,6 +10,7 @@ package modelo;
  *
  * @author USUARIO
  */
+//Clase enum
 public enum TipoMascota {
     TODOS,
     PERRO,

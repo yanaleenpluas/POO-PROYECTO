@@ -23,6 +23,7 @@ import modelo.TipoMascota;
  * @author USUARIO
  */
 public class Main {
+    //Se crean las listas estaticas de duenio, mascotas, ciudades, concursos,auspiciantes
     public static ArrayList<Duenio> duenios;
     public static ArrayList<Mascota> mascotas;
     public static ArrayList<Ciudad> ciudades;
@@ -31,55 +32,70 @@ public class Main {
     public static int oprincipal=0;
     
     public static void main(String[] args) {
+        //Se ejecutan los datos de cada lista
         datosCiudades();
         datosDuenios();
         datosMascotas();
-       datosAuspiciantes();
+        datosAuspiciantes();
         datosConcurso();
        simulacionPrograma();
     }
     
-    
+    //Se crea la clase simulacion de programa
     public static void simulacionPrograma(){
-        while(oprincipal!=4){
+        while(oprincipal!=4){           
+            //Se llama al metodo menu principal que imprime el menu y devuelve la opcion del menu
             int opcionMenu=menuPrincipal();
+            
+            //Si opcionMenu es igual a 1 se va al menu AdministrarConcursos
             while (opcionMenu==1){
+                //Se inprime el menu AdministrarConcurso y se obtiene la opcion de dicho menu
                 int opConcurso=AdministrarConcurso.menu(concursos);
+                //Si opConcurso es igual a 1, se llama al metodo crearCOncurso de la clase administrarConcurso
                 if(opConcurso==1){
                     AdministrarConcurso.crearConcurso(concursos, ciudades, auspiciantes);
                     System.out.print("1. Volver al menu principal \n2. Volver al Menu Administrar Concursos\n3.Salir\n");
                     int op = Main.volverMenu(opcionMenu);
                     opcionMenu=op;
                  
+                //Si opConcurso es igual a 2, se llama al metodo InscribirConcurso de la clase administrarConcurso                    
                 }else if(opConcurso==2){
                     AdministrarConcurso.inscribirParticipante(concursos, mascotas);
                     System.out.print("1. Volver al menu principal \n2. Volver al Menu Administrar Concursos\n3.Salir\n");
                     int op = Main.volverMenu(opcionMenu);
                     opcionMenu=op;
+
+                //Si opConcurso es igual a 3, se llama al metodo mostratInformacionConcurso de la clase administrarConcurso
                 }else if(opConcurso==3){
                     AdministrarConcurso.mostrarInformacionConcurso(concursos);
                     System.out.print("1. Volver al menu principal \n2. Volver al Menu Administrar Concursos\n3.Salir\n");
                     int op = Main.volverMenu(opcionMenu);
                     opcionMenu=op;
+                //Si opConcurso es igual a 4, opcionMenu toma valor de 0 lo cual hace que se imprima de nuevo el menu principal
                 }else if(opConcurso==4){
                     opcionMenu=0;
                 }
                 
             }
             
+            //Si opcionMenu es igual a 2 se va al menu AdministrarDuenio
             while(opcionMenu==2){
+                //Se llama al metodo menu de la clase administrarDuenio que imprime un menu
+                //y retorna la opcion del menu
                 int opDuenios=AdministrarDuenio.menu(duenios);
+                //Si opDuenios==1 entonces se llama al metodo crearDuenio de la clase administrarDuenio
                 if(opDuenios==1){
                     AdministrarDuenio.crearDuenio(duenios,ciudades);
                     System.out.print("1. Volver al menu principal \n2. Volver al Menu Administrar Dueños\n3.Salir\n");
                     int op = Main.volverMenu(opcionMenu);
                     opcionMenu=op;
+                //Si opDuenios==2 entonces se llama al metodo editarDuenio de la clase administrarDuenio                
                 }else if (opDuenios==2){
                     AdministrarDuenio.editarDuenio(duenios, ciudades);
                     System.out.print("1. Volver al menu principal \n2. Volver al Menu Administrar Dueños\n3.Salir\n");
                     int op = Main.volverMenu(opcionMenu);
                     opcionMenu=op;
-                    
+                //Si opDuenios==3 se regresa al menu principal
                 }else if(opDuenios==3){
                     opcionMenu=0;
                 }
@@ -101,13 +117,9 @@ public class Main {
                     int op=Main.volverMenu(opcionMenu);
                     opcionMenu=op;                   
                 }else if(opMascotas==3){
-                    opcionMenu=0;
-                     
+                    opcionMenu=0;    
                 }
-           
-            }
-           
-           
+            }      
             while(opcionMenu==4){
                salir();
                opcionMenu=0;
@@ -116,6 +128,7 @@ public class Main {
         }
            
     }
+    //Se crea la clase menuPrincipal que muestra el menu principal
     public static int menuPrincipal(){
         System.out.print("----BIENVENIDOS A LA FUNDACION AMIGOS PELUDOS EC?----\n");
         System.out.print("-----Menu Principal----- \n ");
@@ -130,6 +143,7 @@ public class Main {
         System.out.print("!Muchas gracias por su atencion!");
         
     }
+    //Se crea la clase volverMenu que regresa al menuPrincipal
     public static int volverMenu( int opcionMenu){
         Scanner sc=new Scanner(System.in);
         int opcion2 = sc.nextInt();
@@ -147,6 +161,7 @@ public class Main {
         return opcionMenu;
     }
     
+    //Se crea los dueños y se los agrega a la lista duenios
     public static void datosDuenios(){
         duenios= new ArrayList<>();
         //String id, String apellido, String nombre, String direccion,  String email, int telefono
@@ -175,7 +190,7 @@ public class Main {
         d10.codigoDuenio(d10.getId());
 
         
-    }
+    }//Se crean los objetos ciudad y se los agrega a la lista ciudades
     public static void datosCiudades(){
         ciudades= new ArrayList<>();
         Ciudad c1 = new Ciudad("Quito","Pichincha","QUIT851");        
@@ -188,7 +203,8 @@ public class Main {
 
         
     }
-
+    
+    //Se crea los objetos mascota y se los agrega a la clase mascota
     public static void datosMascotas(){
         //Se crean los datos iniciales para que el programa tenga un mejor funcionamiento
         //Se crean los 10 objetos de tipo Mascota 
@@ -221,7 +237,7 @@ public class Main {
         m10.codigoMascota(m10.getId());
         
     }
-    
+    //Se crea los objetos auspiciantes y se los añade a la lista Auspiciantes
     public static void datosAuspiciantes(){
         auspiciantes= new ArrayList<>();
         //String id, String nombre, String direccion, Ciudad ciudad, String email, String telefono,String webPage 
@@ -236,7 +252,7 @@ public class Main {
         a3.codigoAuspiciante(a3.getId());
 
     }
-    
+    //Se crea los objetos concursos y se los añade a la lista concurso
     public static void datosConcurso(){
         //Concurso pasado
         concursos= new ArrayList<>();

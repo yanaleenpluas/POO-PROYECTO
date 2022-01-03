@@ -18,6 +18,7 @@ import modelo.Premio;
 //Clase administrar concurso
 public class AdministrarConcurso {
     public static int menu(ArrayList<Concurso> concursos){
+        //Mostramos el menu de administrar concurso
         System.out.print("----Administrar Concurso----");
 
         System.out.print("\n>>>Concursos Existentes:\n");
@@ -47,20 +48,23 @@ public class AdministrarConcurso {
             }
         }
     }
-    //cea un nuevo concurso
+    //Metodo para crearConcurso un nuevo concurso
     public static void crearConcurso(ArrayList<Concurso> concursos, 
         ArrayList<Ciudad> ciudades, ArrayList<Auspiciante> auspiciantes){
         System.out.print("\n-----Crear Concurso-----\n");
+        //Creamos listas para el concurso
         ArrayList<Auspiciante> auspiciantesC= new ArrayList<Auspiciante>();
         ArrayList<Mascota> mInscritas= new ArrayList<Mascota>();
         ArrayList<Mascota> mGanadoras= new ArrayList<Mascota>();
         ArrayList<Premio> premios= new ArrayList<Premio>();
         Scanner sc = new Scanner(System.in);
 
+        //pedimos la informacion para el concurso
         TipoMascota dirigido;
         dirigido= TipoMascota.TODOS;
         int i=0;
         while(i==0){
+          //Verificamos el tipo de mascota para el concurso
             System.out.print("Ingresar Tipo(PERRO/GATO/TODOS):\n");
             String tip= sc.nextLine();
             if(tip.toUpperCase().equals("GATO")){
@@ -78,6 +82,7 @@ public class AdministrarConcurso {
                 System.out.print("!ERROR!\n");
             }
         }
+        //Pedimos informacion al usuario
         System.out.print("Ingresar ID Concurso:\n");
         String iD= sc.nextLine();
         
@@ -124,7 +129,7 @@ public class AdministrarConcurso {
             premios.add(p);
         
         }
-               
+        //Creamos el concurso       
         Concurso c1 = new Concurso(nombre,fechaEvento,iD,hora,fechaInicioI,fechaFinalI,c,
                lugar,premios,auspiciantesC,dirigido,mInscritas,mGanadoras);
         
@@ -133,9 +138,10 @@ public class AdministrarConcurso {
 
 
     }
-    //inscribe un nuevo participante
+    //Metodo para inscribir un nuevo participante
     public static void inscribirParticipante(ArrayList<Concurso> concursos,ArrayList<Mascota> mascotas){
         System.out.print("\n-----Inscribir Participante-----\n");
+      //Verificamos que el concurso este vigente
         System.out.print("\n>>>Concursos Vigentes:\n");
         mostrarConcursosVigentes(concursos);
         System.out.print("Ingresar Codigo Concurso:\n");
@@ -143,6 +149,7 @@ public class AdministrarConcurso {
         String codigo= sc.nextLine();
         for (Concurso c: concursos){
             if(codigo.equals(c.getIdConcurso())){
+                //Verificamos la mascota
                 ArrayList<Mascota> mInscri= c.getMascotasInscritas();
                 AdministrarMascota.mostrarMascota(mascotas);
                 System.out.print("Ingresar Id Mascota:\n");
@@ -152,6 +159,7 @@ public class AdministrarConcurso {
                         mInscri.add(m);                        
                     }
                 }
+                //Inscirbimos a la mascota al concurso                
                 c.setMascotasInscritas(mInscri);
                 
             }
@@ -160,7 +168,7 @@ public class AdministrarConcurso {
         System.out.print("Se ha inscrito un nuevo participante con exito\n");
 
     }
-    //muestra la informacion del concurso
+    //Meotodo para mostrar la informacion del concurso
     public static void mostrarInformacionConcurso(ArrayList<Concurso>concursos){
         int i=0;
         for(Concurso c:concursos){

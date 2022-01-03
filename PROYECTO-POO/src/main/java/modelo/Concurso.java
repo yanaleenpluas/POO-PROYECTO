@@ -106,19 +106,23 @@ public class Concurso {
     
 
    
-    @Override
+    @Override//Metodo toString
         public String toString() {
         return  ") Nombre=" + nombre + ", dirigido=" +dirigido+ ", codigo:" +idConcurso+ ", estado=" + estado ;
     }
+    //Metodo para mostrar la informacion del concurso
      public void mostrarInformacion() {
+       //Mostramos la informacion
         System.out.print(  ")ID Concurso=" + idConcurso + "\n-Nombre=" + nombre + "\n-Fecha Evento=" + fechaEvento
-                + "\n-Hora Evento=" + horaEvento + "\n- Fecha Inicio Inscripcion=" + fechaInicioI + "\n-Fecha Cierre Inscripcion=" + fechaCierreI + "\n-Ciudad=" + ciudad + "\n-Lugar=" + lugar + "\n-Premios=" 
-                );
+                + "\n-Hora Evento=" + horaEvento + "\n- Fecha Inicio Inscripcion=" + fechaInicioI + "\n-Fecha Cierre Inscripcion=" + fechaCierreI + "\n-Ciudad=" + ciudad + "\n-Lugar=" + lugar + "\n-Premios=" );
+        //Mostramos los premios
         for (Premio p: premios){
             System.out.print("\n"+p.getPuesto()+"="+p.getDescripcion());
         
         }
+        //Mostramos mascotas ganadoras
         mostrarMascotas(mascotasGanadoras);
+        //Mostramos mas info del concurso
         System.out.print("\n-Auspiciantes=" + auspiciantes + "\n-Dirigido=" + dirigido+ "\n-Estado=" + estado+"\n");
     }
  

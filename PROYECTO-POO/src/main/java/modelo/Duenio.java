@@ -6,6 +6,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -52,17 +53,18 @@ public class Duenio extends Entidad {
     }
     
 
-    @Override
+    @Override//Metodo toString
     public String toString() {
         return  ") ID=" + id + ", Apellido=" + apellido+super.toString() ;
     }
+    //Muestra los auspiciantes
     public static void mostrarAuspiciante(ArrayList<Duenio> duenios){
         int i=0;
         for(Duenio a: duenios){
             i++;
             System.out.print(i+ a.toString()+"\n");
         }
-    }    
+    }   
 
 
 

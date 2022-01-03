@@ -14,20 +14,22 @@ import java.util.Scanner;
  */
 //Clase administrar cuidad
 public class AdministrarCiudad {
-    //crea una ciudad nueva
+    //Metodo para crear una ciudad nueva
     public static Ciudad CrearCiudad(){
         Scanner sc =  new Scanner(System.in);
+        //Pedimos informacion al usuario
         System.out.print("Ingresar Nombre de Ciudad:\n");
         String nombre = sc.nextLine();
         System.out.print("Ingresar Porvincia:\n");
         String provincia = sc.nextLine();
         System.out.print("Ingresar ID :\n");
         String iD = sc.nextLine();
+        //Creamos una nueva ciudad con la informacion
         Ciudad c= new Ciudad(nombre,provincia, iD);
         return c;
         
     }
-    //muestra las ciudades existentes
+    //Metodo para mostar las ciudades existentes
     public static void mostrarCiudades(ArrayList<Ciudad> ciudades){
         int i=0;
         for(Ciudad c: ciudades){

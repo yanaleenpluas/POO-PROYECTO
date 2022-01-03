@@ -9,14 +9,16 @@ package modelo;
  *
  * @author USUARIO
  */
+//Utilizaremos entidad como una clase padre de duenio y auspiciante
 public abstract class Entidad {
+  //Atributos de Entidad
     protected String nombre;
     protected String direccion;
-    //private Cuidad cuidad;
     protected String email;
     protected String telefono;
     protected Ciudad ciudad;
 
+    //Constructor de entidad
     public Entidad(String nombre, String direccion, Ciudad ciudad, String email, String telefono) {
         this.nombre = nombre;
         this.direccion = direccion;
@@ -25,6 +27,7 @@ public abstract class Entidad {
         this.telefono = telefono;
     }
 
+    //getters y setters
     public Ciudad getCiudad() {
         return ciudad;
     }
@@ -66,6 +69,7 @@ public abstract class Entidad {
         this.telefono = telefono;
     }
 
+    //Metodo toStrin
     @Override
     public String toString() {
         return ", Nombre=" + nombre+", Ciudad: "+ ciudad.getNombre();

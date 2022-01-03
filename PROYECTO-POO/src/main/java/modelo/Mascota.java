@@ -16,6 +16,7 @@ import java.util.ArrayList;
  * @author USUARIO
  */
 public class Mascota {
+    //Atributos
     private static String codigo;
     private String nombreM;
     private String raza;
@@ -65,7 +66,7 @@ public class Mascota {
         return tipo;
     }
 
-    @Override
+    @Override//metodoToString
     public String toString() {
         return  ") Nombre=" + nombreM + ", ID=" + id +  ", Raza=" + raza + ", Fecha Nacimiento=" + fechaNacimiento  +", Tipo=" + tipo+ "Dueño"+ duenio ;
     }

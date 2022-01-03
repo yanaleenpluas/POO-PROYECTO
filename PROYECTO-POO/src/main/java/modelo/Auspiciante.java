@@ -11,22 +11,28 @@ import java.util.ArrayList;
  *
  * @author USUARIO
  */
+//Auspiciante es clase hija de entidad
 public class Auspiciante extends Entidad{
+  //Atributos de Auspiciante
     private String webPage;
     private String id;
     private static String codigo;
 
+    //Constructor de Auspiciante
     public Auspiciante(String id, String nombre, String direccion, Ciudad ciudad, String email, String telefono,String webPage ) {
+      //Utilizamos super para llamar al constructor de la clase padre
         super(nombre, direccion, ciudad, email, telefono);
         this.webPage = webPage;
         this.id = id;
     }
     
+    //Metodo de codigo de Auspiciante
     public void codigoAuspiciante(String id){
         this.codigo=id;
         
     }
 
+    //Gettes y Setters
     public String getWebPage() {
         return webPage;
     }
@@ -39,6 +45,7 @@ public class Auspiciante extends Entidad{
         return codigo;
     }
 
+    //Metodo toString
     @Override
     public String toString() {
         return ") "+nombre;
